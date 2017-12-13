@@ -116,6 +116,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   byebug
+  i18n
   puma (~> 3.7)
   rack-cors
   rails (~> 5.1.4)
