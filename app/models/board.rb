@@ -10,5 +10,6 @@
 #
 
 class Board < ApplicationRecord
+  has_many :lists, dependent: :destroy
   validates :title, :description, presence: true
 end
