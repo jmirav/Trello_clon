@@ -34,6 +34,15 @@ class ListsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'patch update: edits a list title' do
+    assert_difference 'List.count', 0 do
+      patch api_v1_board_list_path(locale: 'es', board_id: @board, id: @list), params: {list: {title: 'edited list title'}}
+      assert_response :success
+
+      assert_equal 'edited list title', List.last.title
+    end
+  end
+
   test 'delete destroy: destroys a list' do
     assert_difference 'List.count', -1 do
       delete api_v1_board_list_path(locale: 'es', board_id: @board, id: @list)

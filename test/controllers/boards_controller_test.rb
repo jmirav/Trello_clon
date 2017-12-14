@@ -45,6 +45,26 @@ class BoardsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'patch update: edits a board title' do
+    assert_difference 'Board.count', 0 do
+      patch api_v1_board_path(locale: 'es', id: @board), params: {board: {title: 'edited board title'}}
+      assert_response :success
+
+      assert_equal 'edited board title',
+      Board.last.title
+    end
+  end
+
+  test 'patch update: edits a board description' do
+    assert_difference 'Board.count', 0 do
+      patch api_v1_board_path(locale: 'es', id: @board), params: {board: {description: 'edited board description'}}
+      assert_response :success
+
+      assert_equal 'edited board description',
+      Board.last.description
+    end
+  end
+
   test 'delete destroy: destroys a board' do
     assert_difference 'Board.count', -1 do
       delete api_v1_board_path(locale: 'es', id: @board)
